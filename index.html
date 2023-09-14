@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obtener IP del Usuario</title>
+    <!-- Agrega los estilos de Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen flex flex-col justify-center items-center">
+        <div id="qrcode" class="mb-6"></div>
+        <h1 class="text-xl sm:text-2xl md:text-3xl font-bold mb-2">Tu dirección IP es:</h1>
+        <p id="ip" class="text-lg sm:text-xl md:text-2xl font-semibold mb-4"></p>
+        <button id="shareButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
+            Compartir en WhatsApp
+        </button>
+        <p id="errorMessage" class="text-red-500 mt-4 hidden"></p>
+    </div>
+
+    <!-- Incluye la biblioteca QRCode.js -->
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script>
+        async function getIP() {
+            try {
+                // Obtiene la dirección IP del usuario desde una API
+                const response = await fetch('https://api64.ipify.org?format=json');
+                if (!response.ok) {
+                    throw new Error('Error al obtener la dirección IP');
+                }
+                const data = await response.json();
+                const ipAddress = data.ip;
+                // Muestra la dirección IP en la página
+                document.getElementById('ip').textContent = ipAddress;
+
+                const url = 'https://my-ip.cencomer.com';
+                // Genera un código QR con la dirección IP
+                const qrcode = new QRCode(document.getElementById("qrcode"), {
+                    text: url,
+                    width: 128,
+                    height: 128
+                });
+
+                const shareButton = document.getElementById('shareButton');
+                // Agrega un evento de clic para compartir la dirección IP en WhatsApp
+                shareButton.addEventListener('click', shareIP);
+
+            } catch (error) {
+                console.error('Error al obtener la dirección IP:', error);
+                // Muestra un mensaje de error si no se puede obtener la dirección IP
+                document.getElementById('errorMessage').textContent = 'Error al obtener la dirección IP. Por favor, intenta de nuevo más tarde.';
+                document.getElementById('errorMessage').classList.remove('hidden');
+            }
+        }
+
+        function shareIP() {
+            const ipAddress = document.getElementById('ip').textContent;
+            const shareText = `¡Mi dirección IP es ${ipAddress}!`;
+            const shareURL = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
+            // Abre WhatsApp con el texto compartido
+            window.open(shareURL, '_blank');
+        }
+
+        // Llama a la función getIP cuando la página se carga completamente
+        window.onload = getIP;
+    </script>
+</body>
+</html>
