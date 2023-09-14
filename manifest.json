@@ -1,0 +1,22 @@
+{
+    "name": "Obtener IP del Usuario",
+    "short_name": "IP App",
+    "description": "Una aplicación para obtener la dirección IP del usuario",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#3498db",
+    "icons": [
+      {
+        "src": "icon.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "icon.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  

@@ -2,8 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Obtener IP del Usuario</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#3498db">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="apple-touch-startup-image" href="icon.png">
+
+    <link rel="apple-touch-icon" href="icon.png">
     <!-- Agrega los estilos de Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
 </head>
@@ -17,6 +26,10 @@
         </button>
         <p id="errorMessage" class="text-red-500 mt-4 hidden"></p>
     </div>
+
+    <footer class="text-center py-4">
+        <p>Creado con amor por <a href="https://cencomer.com" target="_blank">Cencomer.com</a></p>
+    </footer>
 
     <!-- Incluye la biblioteca QRCode.js -->
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
@@ -64,5 +77,17 @@
         // Llama a la función getIP cuando la página se carga completamente
         window.onload = getIP;
     </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then((registration) => {
+              console.log('Service Worker registrado con éxito:', registration);
+            })
+            .catch((error) => {
+              console.error('Error al registrar el Service Worker:', error);
+            });
+        }
+    </script>
+      
 </body>
 </html>
