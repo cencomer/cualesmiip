@@ -34,6 +34,6 @@ Si deseas contribuir a este proyecto o informar sobre problemas, ¡estamos abier
 
 ## Contacto
 
-Puedes ponerte en contacto con el autor en [correo electrónico](mailto:correo@ejemplo.com) o visitar [Cencomer.com](https://cencomer.com) para obtener más información sobre el proyecto.
+Puedes ponerte en contacto con el autor en [correo electrónico](mailto:contacto@cencomer.com o visitar [Cencomer.com](https://cencomer.com) para obtener más información sobre el proyecto.
 
 ¡Gracias por usar "Obtener IP del Usuario"!
